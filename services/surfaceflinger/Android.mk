@@ -49,7 +49,7 @@ LOCAL_C_INCLUDES := \
 
 LOCAL_CFLAGS := -DLOG_TAG=\"SurfaceFlinger\"
 
-ifeq ($(TARGET_BUILD_VARIANT),userdebug)
+ifeq ($(TARGET_BUILD_VARIANT),eng)
 LOCAL_CFLAGS += -DDEBUG_CONT_DUMPSYS
 endif
 
@@ -168,7 +168,7 @@ endif
 
 LOCAL_MODULE := libsurfaceflinger
 
-LOCAL_CFLAGS += -Wall -Werror -Wunused -Wunreachable-code
+LOCAL_CFLAGS += -Wall -Werror -Wunused -Wunreachable-code -O3
 
 LOCAL_SDCLANG_LTO := true
 
@@ -182,6 +182,7 @@ LOCAL_CLANG := true
 
 LOCAL_LDFLAGS := -Wl,--version-script,art/sigchainlib/version-script.txt -Wl,--export-dynamic
 LOCAL_CFLAGS := -DLOG_TAG=\"SurfaceFlinger\"
+LOCAL_CPPFLAGS := -std=c++14 -O3
 
 LOCAL_INIT_RC := surfaceflinger.rc
 
@@ -212,7 +213,7 @@ ifdef TARGET_32_BIT_SURFACEFLINGER
 LOCAL_32_BIT_ONLY := true
 endif
 
-LOCAL_CFLAGS += -Wall -Werror -Wunused -Wunreachable-code
+LOCAL_CFLAGS += -Wall -Werror -Wunused -Wunreachable-code -O3
 
 include $(BUILD_EXECUTABLE)
 
@@ -224,6 +225,7 @@ include $(CLEAR_VARS)
 LOCAL_CLANG := true
 
 LOCAL_CFLAGS := -DLOG_TAG=\"SurfaceFlinger\"
+LOCAL_CPPFLAGS := -std=c++14 -O3
 
 LOCAL_SRC_FILES := \
     DdmConnection.cpp
@@ -235,7 +237,7 @@ LOCAL_SHARED_LIBRARIES := \
 
 LOCAL_MODULE := libsurfaceflinger_ddmconnection
 
-LOCAL_CFLAGS += -Wall -Werror -Wunused -Wunreachable-code
+LOCAL_CFLAGS += -Wall -Werror -Wunused -Wunreachable-code -O3
 
 include $(BUILD_SHARED_LIBRARY)
 endif # libnativehelper
